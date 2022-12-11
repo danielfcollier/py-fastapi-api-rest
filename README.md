@@ -40,7 +40,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4) Run the server? 
+4) Run the server:
 
 ```bash
 uvicorn src.main:app --reload --host 0.0.0.0 --port 4000
