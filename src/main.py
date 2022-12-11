@@ -1,5 +1,5 @@
 from fastapi import FastAPI, status
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import PlainTextResponse
 
 from src.router import *
 from src.model import Event
@@ -38,4 +38,4 @@ async def post():
         return PlainTextResponse(result)
 
     except:
-        return JSONResponse({ "error": { "message": "Bad Request" } }, status_code = status.HTTP_400_BAD_REQUEST)
+        return PlainTextResponse("Bad Request", status_code = status.HTTP_400_BAD_REQUEST)

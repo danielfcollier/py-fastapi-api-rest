@@ -3,7 +3,7 @@ from fastapi import status
 
 from src.model import Event
 
-from main import app
+from src.main import app
 
 client = TestClient(app)
 
