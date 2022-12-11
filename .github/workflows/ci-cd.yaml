@@ -20,7 +20,7 @@ jobs:
       fail-fast: true
 
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest, macos-latest ]
         python: ["3.10"]
 
     steps:
@@ -36,8 +36,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Tests
-        run: make test
-
+        run: pytest
   deploy:
     needs: tests
 
