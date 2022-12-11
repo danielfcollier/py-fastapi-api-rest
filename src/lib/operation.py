@@ -1,48 +1,49 @@
-from db import Db
+from src.lib.db import Db
 
 class Operation():
   @staticmethod
-  def handler(data):
-    match data["type"]:
+  def handler(request):
+    match request["type"]:
 
       case "deposit":
-        return Operation._deposit(data)
+        return Operation._deposit(request)
 
       case "transfer":
-        return Operation._transfer(data)
+        return Operation._transfer(request)
 
       case "withdraw":
-        return Operation._withdraw(data)
+        return Operation._withdraw(request)
 
   @staticmethod
-  def _deposit(data):
-    id = data["destination"]
+  def _deposit(request):
+    print("Deposit handler called!")
+    id = request["destination"]
     account = Db.read(id)
     if account is None:
-      new_account = dict(
-        id = id,
-        balance = data["amount"]
-      )
+      new_account = {
+        "id": id,
+        "balance": request["amount"]
+      }
       Db.create(new_account)
 
-      return dict(destination = new_account)
+      return { "destination": new_account }
 
-    updated_account = Db.increment(account, data["amount"])
+    updated_account = Db.increment(account, request["amount"])
 
-    return dict(destination = updated_account)
+    return { "destination": updated_account }
 
   @staticmethod
-  def _transfer(data):
-    origin = Operation._withdraw(data)
+  def _transfer(request):
+    origin = Operation._withdraw(request)
     if origin is not None:
-      destination = Operation._deposit(data)
+      destination = Operation._deposit(request)
 
-      return dict(origin = origin["origin"], destination = destination["destination"])
+      return { "origin": origin["origin"], "destination": destination["destination"] }
 
   @staticmethod
-  def _withdraw(data):
-    id = data["origin"]
+  def _withdraw(request):
+    id = request["origin"]
     account = Db.read(id)
-    updated_account = Db.decrement(account, data["amount"])
+    updated_account = Db.decrement(account, request["amount"])
 
-    return dict(origin = updated_account)
+    return { "origin": updated_account }

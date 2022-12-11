@@ -1,4 +1,4 @@
-from operation import Operation
+from src.lib.operation import Operation
 
 def test_handler_deposit():
   data = {

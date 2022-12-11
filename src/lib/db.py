@@ -1,5 +1,7 @@
 import os
-from file_handler import *
+import json
+
+from src.lib.file_handler import *
 
 DB_PATH = os.path.join("src", "db", "data.json")
 
@@ -12,7 +14,7 @@ class Db():
 
   @staticmethod
   def reset():
-    write_json(DB_PATH, [])
+    write_json(DB_PATH, json.dumps([]))
 
     return Db.read_all()
 
@@ -20,7 +22,7 @@ class Db():
   def create(account):
     data = Db.read_all()
     data.append(account)
-    write_json(DB_PATH, data)
+    write_json(DB_PATH, json.dumps(data))
 
     return account
 
@@ -49,6 +51,6 @@ class Db():
       if element["id"] == account["id"]:
         new_amount = element["balance"] + amount
         data[index]["balance"] = new_amount
-        write_json(DB_PATH, data)
+        write_json(DB_PATH, json.dumps(data))
 
         return { "id": account["id"], "balance": new_amount }

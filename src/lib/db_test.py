@@ -1,5 +1,5 @@
-from db import Db
-from file_handler import *
+from src.lib.db import Db
+from src.lib.file_handler import *
 
 def test_before():
   Db.reset()

@@ -4,7 +4,7 @@ def read_json(filepath):
   with open(filepath, "r") as json_file:
     data = json.load(json_file)
 
-  return data
+  return json.loads(data)
 
 def write_json(filepath, data):
   with open(filepath, "w") as json_file:
