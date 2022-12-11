@@ -8,7 +8,6 @@ Requirements: Python 3.10 + FastAPI
 - [Build and Run](#build-and-run)
 - [Run Tests](#run-tests)
 - [CI-CD](#ci-cd)
-- [Configurations](#configurations)
 - [References](#references)
 
 ## Demo Version
