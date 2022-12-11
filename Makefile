@@ -1,5 +1,8 @@
-install:
+create:
 	@python3 -m venv .venv
+
+install:
+	@pip install -r requirements.txt
 
 run:
 	@uvicorn src.main:app --reload --host 0.0.0.0 --port 4000
