@@ -15,7 +15,7 @@ Requirements: Python 3.10 + FastAPI
 Run locally with `ngrok`:
 
 ```bash
-make run
+make tunnel
 ```
 
 ## Build and Run the App
