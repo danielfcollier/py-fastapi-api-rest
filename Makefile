@@ -2,7 +2,7 @@ install:
 	@python3 -m venv .venv
 
 run:
-	@uvicorn main:app --reload --host 0.0.0.0 --port 4000
+	@uvicorn src.main:app --reload --host 0.0.0.0 --port 4000
 
 venv:
 	@echo "run with: source .venv/bin/activate"
